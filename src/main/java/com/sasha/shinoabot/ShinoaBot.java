@@ -1,5 +1,6 @@
 package com.sasha.shinoabot;
 
+import com.github.steveice10.mc.protocol.packet.ingame.client.ClientChatPacket;
 import com.sasha.reminecraft.api.RePlugin;
 import com.sasha.shinoabot.command.AboutCommand;
 import com.sasha.shinoabot.localisation.EnumLocale;
@@ -13,6 +14,7 @@ public class ShinoaBot extends RePlugin {
 
     @Override
     public void onPluginInit() {
+        // register the LocalisedResponses when the plugin is first initialised, so that we can access them as soon as possible
         LANG_MANAGER.registerLocalisedResponse(EnumLocale.ENG, "shinoa.about", "ShinoaBot " + Constants.VERSION);
         LANG_MANAGER.registerLocalisedResponse(EnumLocale.ENG, "shinoa.about", "シノアBOT " + Constants.VERSION);
     }
@@ -47,6 +49,6 @@ public class ShinoaBot extends RePlugin {
     }
 
     public static void sendMessageIngame(String s) {
-
+        this.getReMinecraft().minecraftClient.getSession().send(new ClientChatPacket("> " + s));
     }
 }
