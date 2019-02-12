@@ -1,6 +1,7 @@
 package com.sasha.shinoabot;
 
 import com.github.steveice10.mc.protocol.packet.ingame.client.ClientChatPacket;
+import com.sasha.reminecraft.ReMinecraft;
 import com.sasha.reminecraft.api.RePlugin;
 import com.sasha.shinoabot.command.AboutCommand;
 import com.sasha.shinoabot.localisation.EnumLocale;
@@ -49,6 +50,6 @@ public class ShinoaBot extends RePlugin {
     }
 
     public static void sendMessageIngame(String s) {
-        this.getReMinecraft().minecraftClient.getSession().send(new ClientChatPacket("> " + s));
+        ReMinecraft.INSTANCE.minecraftClient.getSession().send(new ClientChatPacket("> " + s));
     }
 }
