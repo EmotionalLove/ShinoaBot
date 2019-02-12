@@ -2,14 +2,19 @@ package com.sasha.shinoabot;
 
 import com.sasha.reminecraft.api.RePlugin;
 import com.sasha.shinoabot.command.AboutCommand;
+import com.sasha.shinoabot.localisation.EnumLocale;
+import com.sasha.shinoabot.localisation.LocalisedResponseManager;
 import com.sasha.simplecmdsys.SimpleCommandProcessor;
 
 public class ShinoaBot extends RePlugin {
 
     public static final SimpleCommandProcessor BOT_CMD_PROC = new SimpleCommandProcessor(",");
+    public static final LocalisedResponseManager LANG_MANAGER = new LocalisedResponseManager();
 
     @Override
     public void onPluginInit() {
+        LANG_MANAGER.registerLocalisedResponse(EnumLocale.ENG, "shinoa.about", "ShinoaBot " + Constants.VERSION);
+        LANG_MANAGER.registerLocalisedResponse(EnumLocale.ENG, "shinoa.about", "シノアBOT " + Constants.VERSION);
     }
 
     @Override

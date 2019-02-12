@@ -4,7 +4,7 @@ import com.sasha.shinoabot.Constants;
 
 import java.util.ArrayList;
 
-public abstract class LocalisedResponseManager {
+public class LocalisedResponseManager {
 
     private ArrayList<LocalisedEntry> localisedEntries = new ArrayList<>();
 
