@@ -9,7 +9,7 @@ public class ShinoaBot extends RePlugin {
 
     @Override
     public void onPluginInit() {
-        
+
     }
 
     @Override
