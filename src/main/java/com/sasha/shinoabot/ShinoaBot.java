@@ -1,6 +1,7 @@
 package com.sasha.shinoabot;
 
 import com.sasha.reminecraft.api.RePlugin;
+import com.sasha.shinoabot.command.AboutCommand;
 import com.sasha.simplecmdsys.SimpleCommandProcessor;
 
 public class ShinoaBot extends RePlugin {
@@ -9,7 +10,6 @@ public class ShinoaBot extends RePlugin {
 
     @Override
     public void onPluginInit() {
-
     }
 
     @Override
@@ -29,11 +29,19 @@ public class ShinoaBot extends RePlugin {
 
     @Override
     public void registerCommands() {
-
+        try {
+            BOT_CMD_PROC.register(AboutCommand.class);
+        } catch (IllegalAccessException | InstantiationException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void registerConfig() {
+
+    }
+
+    public static void sendMessageIngame(String s) {
 
     }
 }

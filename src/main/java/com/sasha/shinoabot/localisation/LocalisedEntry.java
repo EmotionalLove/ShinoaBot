@@ -6,23 +6,23 @@ package com.sasha.shinoabot.localisation;
  */
 public class LocalisedEntry {
 
-    public final EnumLocales locale;
+    public final EnumLocale locale;
     public final String key;
     public final String response;
 
     public LocalisedEntry(String key, String response) {
-        this.locale = ConstantLocalisedResponses.defaultLocale;
+        this.locale = LocalisedResponseManager.defaultLocale;
         this.key = key;
         this.response = response;
     }
 
-    public LocalisedEntry(EnumLocales locale, String key, String response) {
+    public LocalisedEntry(EnumLocale locale, String key, String response) {
         this.locale = locale;
         this.key = key;
         this.response = response;
     }
 
-    public EnumLocales getLocale() {
+    public EnumLocale getLocale() {
         return locale;
     }
 

@@ -1,5 +1,5 @@
 package com.sasha.shinoabot.localisation;
 
-public enum EnumLocales {
+public enum EnumLocale {
     ENG, JAPANESE
 }
