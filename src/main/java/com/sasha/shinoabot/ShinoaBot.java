@@ -3,6 +3,8 @@ package com.sasha.shinoabot;
 import com.github.steveice10.mc.protocol.packet.ingame.client.ClientChatPacket;
 import com.sasha.reminecraft.ReMinecraft;
 import com.sasha.reminecraft.api.RePlugin;
+import com.sasha.reminecraft.logging.ILogger;
+import com.sasha.reminecraft.logging.LoggerBuilder;
 import com.sasha.shinoabot.command.AboutCommand;
 import com.sasha.shinoabot.event.MinecraftEventListener;
 import com.sasha.shinoabot.localisation.EnumLocale;
@@ -11,6 +13,7 @@ import com.sasha.simplecmdsys.SimpleCommandProcessor;
 
 public class ShinoaBot extends RePlugin {
 
+    public static final ILogger LOGGER = LoggerBuilder.buildProperLogger("ShinoaBot");
     public static final SimpleCommandProcessor BOT_CMD_PROC = new SimpleCommandProcessor(",");
     public static final LocalisedResponseManager LANG_MANAGER = new LocalisedResponseManager();
 
@@ -24,17 +27,17 @@ public class ShinoaBot extends RePlugin {
 
     @Override
     public void onPluginEnable() {
-
+        LOGGER.log("ShinoaBot " + Constants.VERSION + " enabled.");
     }
 
     @Override
     public void onPluginDisable() {
-
+        LOGGER.log("ShinoaBot " + Constants.VERSION + " disabled.");
     }
 
     @Override
     public void onPluginShutdown() {
-
+        LOGGER.log("ShinoaBot " + Constants.VERSION + " shut down.");
     }
 
     @Override
