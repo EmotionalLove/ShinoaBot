@@ -4,6 +4,8 @@ import com.sasha.shinoabot.Constants;
 
 import java.util.ArrayList;
 
+import static com.sasha.shinoabot.Constants.defaultLocale;
+
 public class LocalisedResponseManager {
 
     private ArrayList<LocalisedEntry> localisedEntries = new ArrayList<>();
@@ -40,7 +42,7 @@ public class LocalisedResponseManager {
      * @return The response
      */
     public String resolve(String key) {
-        return this.resolve(Constants.defaultLocale, key);
+        return this.resolve(defaultLocale, key);
     }
 
     /**
@@ -56,6 +58,7 @@ public class LocalisedResponseManager {
                 return localisedEntry.response;
             }
         }
+        if (locale != defaultLocale) return this.resolve(key);
         return this.resolve(locale, "response.unknown");
     }
 
