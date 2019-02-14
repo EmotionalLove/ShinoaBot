@@ -23,9 +23,9 @@ public class ShinoaBot extends RePlugin {
     @Override
     public void onPluginInit() {
         // register the LocalisedResponses when the plugin is first initialised, so that we can access them as soon as possible
-        time.scheduleWithFixedDelay(()->{
-            sendMessageIngame("https://discord.gg/eZC45rm");
-        },600l,600l, TimeUnit.SECONDS);
+        time.scheduleWithFixedDelay(() -> {
+            sendMessageIngame("https://discord.gg/eZC45rm 2b2t Anime Club");
+        }, 600L, 600L, TimeUnit.SECONDS);
         this.getReMinecraft().EVENT_BUS.registerListener(new MinecraftEventListener());
     }
 

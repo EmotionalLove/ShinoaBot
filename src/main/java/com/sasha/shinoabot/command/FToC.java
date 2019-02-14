@@ -3,6 +3,9 @@ package com.sasha.shinoabot.command;
 import com.sasha.shinoabot.ShinoaBot;
 import com.sasha.simplecmdsys.SimpleCommand;
 
+/**
+ * @author Phi
+ */
 public class FToC extends SimpleCommand {
     public FToC() {
         super("ftoc");
