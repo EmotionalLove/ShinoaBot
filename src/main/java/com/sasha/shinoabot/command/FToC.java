@@ -11,16 +11,15 @@ public class FToC extends SimpleCommand {
 
     @Override
     public void onCommand() {
-        if (this.getArguments().length!=1){
+        if (this.getArguments().length != 1) {
             ShinoaBot.sendMessageIngame("Error: Only one number allowed.");
             return;
         }
         try {
             int f = Integer.parseInt(this.getArguments()[0]);
-            int c;
-            c = (f-32)*5/9;
-            ShinoaBot.sendMessageIngame(c+" Degrees Celsius");
-        }catch(NumberFormatException e){
+            int c = (f - 32) * 5 / 9;
+            ShinoaBot.sendMessageIngame(c + " Degrees Celsius");
+        } catch (NumberFormatException e) {
             ShinoaBot.sendMessageIngame("Error: You cannot type letters.");
         }
     }
