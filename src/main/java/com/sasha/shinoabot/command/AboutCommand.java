@@ -12,6 +12,6 @@ public class AboutCommand extends SimpleCommand {
 
     public void onCommand() {
         // this will get the text that we register in ShinoaBot.onPluginInit() by the key we specified then, and send it
-        ShinoaBot.sendMessageIngame("about");
+        ShinoaBot.sendMessageIngame("Smartish bot made by Phi x Sasha");
     }
 }
