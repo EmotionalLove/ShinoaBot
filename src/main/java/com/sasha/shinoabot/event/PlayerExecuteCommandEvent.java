@@ -4,6 +4,8 @@ import com.sasha.eventsys.SimpleCancellableEvent;
 
 public class PlayerExecuteCommandEvent extends SimpleCancellableEvent {
 
+    public static String lastCommandExecutor;
+
     private String player;
 
     public String getPlayer() {

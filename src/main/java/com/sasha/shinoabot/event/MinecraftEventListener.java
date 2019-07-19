@@ -4,9 +4,13 @@ import com.sasha.eventsys.SimpleEventHandler;
 import com.sasha.eventsys.SimpleListener;
 import com.sasha.reminecraft.ReMinecraft;
 import com.sasha.reminecraft.api.event.ChatReceivedEvent;
+import com.sasha.reminecraft.api.event.ServerOtherPlayerJoinEvent;
 import com.sasha.shinoabot.ShinoaBot;
+import com.sasha.shinoabot.ShinoaData;
 
 public class MinecraftEventListener implements SimpleListener {
+
+
 
     @SimpleEventHandler
     public void onChatRecieved(ChatReceivedEvent event) {
@@ -18,8 +22,9 @@ public class MinecraftEventListener implements SimpleListener {
                 PlayerExecuteCommandEvent e = new PlayerExecuteCommandEvent(player, raw);
                 ReMinecraft.INSTANCE.EVENT_BUS.invokeEvent(e);
                 if (e.isCancelled()) return;
+                PlayerExecuteCommandEvent.lastCommandExecutor = e.getPlayer();
                 boolean success = ShinoaBot.COMMAND_PROCESSOR.processCommand(raw);
-                if (!success) ShinoaBot.sendMessageIngame("> Unknown command.");
+                if (!success) ShinoaBot.sendMessageIngame("Unknown command.");
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -27,8 +32,14 @@ public class MinecraftEventListener implements SimpleListener {
     }
 
     @SimpleEventHandler
+    public void onPlayerJoin(ServerOtherPlayerJoinEvent e) {
+        if (ShinoaData.getJoinMessage(e.getName()) == null) return;
+        ShinoaBot.sendMessageIngame(e.getName() + " " + ShinoaData.getJoinMessage(e.getName()));
+    }
+
+    @SimpleEventHandler
     public void onCommandProcess(PlayerExecuteCommandEvent e) {
-        ShinoaBot.LOGGER.log(e.getPlayer() + " attempting to run \"" + e.getBody() + "\"");
+        ShinoaBot.LOGGER.log(e.getPlayer() + " is attempting to run \"" + e.getBody() + "\"");
     }
 
 }
