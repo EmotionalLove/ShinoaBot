@@ -26,4 +26,9 @@ public class MinecraftEventListener implements SimpleListener {
         }
     }
 
+    @SimpleEventHandler
+    public void onCommandProcess(PlayerExecuteCommandEvent e) {
+        ShinoaBot.LOGGER.log(e.getPlayer() + " attempting to run \"" + e.getBody() + "\"");
+    }
+
 }

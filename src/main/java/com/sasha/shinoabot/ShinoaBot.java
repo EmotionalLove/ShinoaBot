@@ -6,13 +6,12 @@ import com.sasha.reminecraft.api.RePlugin;
 import com.sasha.reminecraft.logging.ILogger;
 import com.sasha.reminecraft.logging.LoggerBuilder;
 import com.sasha.shinoabot.command.AboutCommand;
-import com.sasha.shinoabot.command.FToC;
+import com.sasha.shinoabot.command.TickrateCommand;
 import com.sasha.shinoabot.event.MinecraftEventListener;
 import me.someonelove.bettercommandsystem.CommandProcessor;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 public class ShinoaBot extends RePlugin {
 
@@ -23,6 +22,7 @@ public class ShinoaBot extends RePlugin {
     @Override
     public void onPluginInit() {
         this.getReMinecraft().EVENT_BUS.registerListener(new MinecraftEventListener());
+        this.getReMinecraft().EVENT_BUS.registerListener(new TickrateMonitor());
     }
 
     @Override
@@ -43,7 +43,7 @@ public class ShinoaBot extends RePlugin {
     @Override
     public void registerCommands() {
         COMMAND_PROCESSOR.registerCommand(new AboutCommand());
-        COMMAND_PROCESSOR.registerCommand(new FToC());
+        COMMAND_PROCESSOR.registerCommand(new TickrateCommand());
     }
 
     @Override
