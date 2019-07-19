@@ -1,0 +1,6 @@
+name: "ShinoaBot"
+description: "Chat bot"
+authors:
+- "Sasha"
+version: "1.0.0 beta"
+mainClass: "com.sasha.shinoabot.ShinoaBot"
