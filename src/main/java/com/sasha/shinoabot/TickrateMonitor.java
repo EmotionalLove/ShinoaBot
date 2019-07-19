@@ -1,9 +1,6 @@
 package com.sasha.shinoabot;
 
-import com.github.steveice10.mc.protocol.packet.ingame.server.world.ServerUpdateTimePacket;
-import com.sasha.eventsys.SimpleEventHandler;
 import com.sasha.eventsys.SimpleListener;
-import com.sasha.reminecraft.api.event.RemoteServerPacketRecieveEvent;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -11,12 +8,12 @@ import java.util.Arrays;
 
 public class TickrateMonitor implements SimpleListener {
 
-    private static final float[] tickRates = new float[3];
-    public static TickrateMonitor INSTANCE;
-    private static int nextIndex = 0;
-    public static long timeLastTimeUpdate;
+    private final float[] tickRates = new float[3];
+    private int nextIndex = 0;
+    public long timeLastTimeUpdate;
+    public boolean ticked = false;
 
-    public static float getTickRate() {
+    public float getTickRate() {
         float numTicks = 0.0F;
         float sumTickRates = 0.0F;
         for (float tickRate : tickRates) {
@@ -32,11 +29,10 @@ public class TickrateMonitor implements SimpleListener {
         }
     }
 
-    @SimpleEventHandler
-    public void onTimeUpdate(RemoteServerPacketRecieveEvent e) {
-        if (!(e.getRecievedPacket() instanceof ServerUpdateTimePacket)) {
-            return;
-        }
+
+
+    public void tick() {
+        ticked = true;
         if (timeLastTimeUpdate != -1L) {
             float timeElapsed = (float) (System.currentTimeMillis() - timeLastTimeUpdate) / 1000.0F;
             tickRates[(nextIndex % tickRates.length)] = clamp(20.0F / timeElapsed, 0.0F, 20.0F);
@@ -45,12 +41,13 @@ public class TickrateMonitor implements SimpleListener {
         timeLastTimeUpdate = System.currentTimeMillis();
     }
 
-    public static boolean isServerResponding() {
-        return timeLastTimeUpdate == -1 || System.currentTimeMillis() - timeLastTimeUpdate <= 5000L;
+    public boolean isServerResponding() {
+        return ticked && timeLastTimeUpdate == -1 || System.currentTimeMillis() - timeLastTimeUpdate <= 5000L;
     }
 
     public void reset() {
         nextIndex = 0;
+        ticked = false;
         timeLastTimeUpdate = -1L;
         Arrays.fill(tickRates, 0.0F);
     }

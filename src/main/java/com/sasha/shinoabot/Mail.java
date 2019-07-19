@@ -16,6 +16,14 @@ public class Mail {
         this.content = content;
     }
 
+    public Mail(String raw) {
+        String[] split = raw.split("\\\\");
+        if (split.length != 3) throw new IllegalArgumentException("Argument isn't a valid Mail object.");
+        this.from = split[0];
+        this.to = split[1];
+        this.content = split[2];
+    }
+
     public void send() {
         ReMinecraft.INSTANCE.minecraftClient.getSession().send(new ClientChatPacket("/w " + to + " " + content));
     }
@@ -30,5 +38,10 @@ public class Mail {
 
     public String getContent() {
         return content;
+    }
+
+    @Override
+    public String toString() {
+        return from + "\\" + to + "\\" + content.replace("\\", "/");
     }
 }

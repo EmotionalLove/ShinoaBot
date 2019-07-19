@@ -1,8 +1,9 @@
 package com.sasha.shinoabot.command;
 
 import com.sasha.shinoabot.ShinoaBot;
-import com.sasha.shinoabot.TickrateMonitor;
 import me.someonelove.bettercommandsystem.Command;
+
+import static com.sasha.shinoabot.ShinoaBot.TICKRATE_MONITOR;
 
 public class TickrateCommand extends Command {
     public TickrateCommand() {
@@ -12,6 +13,6 @@ public class TickrateCommand extends Command {
 
     @Override
     public void onCommand(boolean hasArgs, String[] args) {
-        ShinoaBot.sendMessageIngame(TickrateMonitor.getTickRate() + " tps - last tick was " + (System.currentTimeMillis() - TickrateMonitor.timeLastTimeUpdate) + "ms ago." + (!TickrateMonitor.isServerResponding() ? " (server not responding)" : ""));
+        ShinoaBot.sendMessageIngame(TICKRATE_MONITOR.getTickRate() + " tps - last tick was " + (System.currentTimeMillis() - TICKRATE_MONITOR.timeLastTimeUpdate) + "ms ago." + (!TICKRATE_MONITOR.isServerResponding() ? " (server not responding)" : ""));
     }
 }
