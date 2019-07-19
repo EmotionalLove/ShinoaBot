@@ -8,7 +8,7 @@ import com.sasha.reminecraft.logging.LoggerBuilder;
 import com.sasha.shinoabot.command.AboutCommand;
 import com.sasha.shinoabot.command.FToC;
 import com.sasha.shinoabot.event.MinecraftEventListener;
-import com.sasha.simplecmdsys.SimpleCommandProcessor;
+import me.someonelove.bettercommandsystem.CommandProcessor;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -18,14 +18,10 @@ public class ShinoaBot extends RePlugin {
 
     public static ScheduledExecutorService time = Executors.newScheduledThreadPool(2);
     public static final ILogger LOGGER = LoggerBuilder.buildProperLogger("ShinoaBot");
-    public static final SimpleCommandProcessor BOT_CMD_PROC = new SimpleCommandProcessor(",");
+    public static final CommandProcessor COMMAND_PROCESSOR = new CommandProcessor(",");
 
     @Override
     public void onPluginInit() {
-        // register the LocalisedResponses when the plugin is first initialised, so that we can access them as soon as possible
-        time.scheduleWithFixedDelay(() -> {
-            sendMessageIngame("https://discord.gg/eZC45rm 2b2t Anime Club");
-        }, 600L, 600L, TimeUnit.SECONDS);
         this.getReMinecraft().EVENT_BUS.registerListener(new MinecraftEventListener());
     }
 
@@ -46,12 +42,8 @@ public class ShinoaBot extends RePlugin {
 
     @Override
     public void registerCommands() {
-        try {
-            BOT_CMD_PROC.register(AboutCommand.class);
-            BOT_CMD_PROC.register(FToC.class);
-        } catch (IllegalAccessException | InstantiationException e) {
-            e.printStackTrace();
-        }
+        COMMAND_PROCESSOR.registerCommand(new AboutCommand());
+        COMMAND_PROCESSOR.registerCommand(new FToC());
     }
 
     @Override

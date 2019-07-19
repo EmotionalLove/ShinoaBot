@@ -1,25 +1,22 @@
 package com.sasha.shinoabot.command;
 
 import com.sasha.shinoabot.ShinoaBot;
-import com.sasha.simplecmdsys.SimpleCommand;
+import me.someonelove.bettercommandsystem.Command;
 
-/**
- * @author Phi
- */
-public class FToC extends SimpleCommand {
+public class FToC extends Command {
     public FToC() {
         super("ftoc");
     }
 
 
     @Override
-    public void onCommand() {
-        if (this.getArguments().length != 1) {
+    public void onCommand(boolean hasArgs, String[] args) {
+        if (!hasArgs || args.length != 1) {
             ShinoaBot.sendMessageIngame("Error: Only one number allowed.");
             return;
         }
         try {
-            int f = Integer.parseInt(this.getArguments()[0]);
+            int f = Integer.parseInt(args[0]);
             int c = (f - 32) * 5 / 9;
             ShinoaBot.sendMessageIngame(c + " Degrees Celsius");
         } catch (NumberFormatException e) {

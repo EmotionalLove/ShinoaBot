@@ -1,15 +1,17 @@
 package com.sasha.shinoabot.command;
 
+import com.sasha.shinoabot.Constants;
 import com.sasha.shinoabot.ShinoaBot;
 import com.sasha.simplecmdsys.SimpleCommand;
+import me.someonelove.bettercommandsystem.Command;
 
-public class AboutCommand extends SimpleCommand {
+public class AboutCommand extends Command {
     public AboutCommand() {
         super("about");
     }
 
     @Override
-    public void onCommand() {
-        ShinoaBot.sendMessageIngame("ShinoaBot made by Phi x Sasha");
+    public void onCommand(boolean hasArgs, String[] args) {
+        ShinoaBot.sendMessageIngame("ShinoaBot " + Constants.VERSION);
     }
 }
