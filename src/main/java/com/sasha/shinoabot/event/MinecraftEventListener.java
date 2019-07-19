@@ -33,6 +33,7 @@ public class MinecraftEventListener implements SimpleListener {
 
     @SimpleEventHandler
     public void onPlayerJoin(ServerOtherPlayerJoinEvent e) {
+        ShinoaData.doesRememberPlayer(e.getName());
         if (ShinoaData.getJoinMessage(e.getName()) == null) return;
         ShinoaBot.sendMessageIngame(e.getName() + " " + ShinoaData.getJoinMessage(e.getName()));
     }

@@ -23,6 +23,10 @@ public class JoinMessageCommand extends Command {
             return;
         }
         String player = args[0];
+        if (!ShinoaData.doesRememberPlayer(player)) {
+            ShinoaBot.sendMessageIngame(Constants.getSelfName() + " can't set this player's join message because it's never seen them before.");
+            return;
+        }
         StringBuilder builder = new StringBuilder();
         // arrays start at 1 :smirk:
         for (int i = 1; i < args.length; i++) {
